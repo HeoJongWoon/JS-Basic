@@ -33,6 +33,11 @@
      자바스크립트에서의 객체지향
      모든 객체에는 prototype이라는 공통의 저장공간이 있고
      prototype안에는 해당 참조형 자료가 활용할수 있는 다양한 메서드를 담고 있음
+
+     deep copy (깊은 복사) vs shallow copy (얉은 복사)
+     - 원시형 자료를 변수에 할당한뒤 해당 변수를 복사하면 값 자체가 복사됨 (deep copy)
+     - 원본값을 유지하면서 deep copy가능 (immutablilty) 불변성유지
+     - 참조형 자료를 변수에 할당한뒤 해당 변수를 복사하면 값이 아닌 참조링크간 복사됨 (shallow copy)
     */
 
     let text = 'hello';
@@ -40,7 +45,20 @@
     let isFemale = false;
     let err;
 
-    let colors = ['red', 'green', 'blue'];
+    let text2 = text;
+
+    text2 = 'world';
+    console.log(text2);
+    console.log(text)
+
+    let colors = ['red', 'green', 'blue']; //해당값을 가리키는 링크1
+    let colors2 = colors; //해당값을 가리키는 링크2
+    //결국 colors, colors2에 있는 참조링크는 값을 다르지만 결국 같은 값을 참조하고 있기 때문에
+    colors2[0] = 'hotpink';
+    console.log(colors2)
+    console.log(colors)
+    //colors가 아닌 colors2라는 배열 복사본만 수정했음에도 불구하고 
+    //원본 배열도 값이 변경되면서 원본데이터의 훼손 (불변성 유지 안됨)
     let studnet1 = {
       name: '홍길동',
       age: 19,
